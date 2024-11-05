@@ -6,6 +6,15 @@ services:
       - 8080:8080
     restart: always
 
+  bdd:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: '123456'
+      MYSQL_DATABASE: testdb
+    volumes:
+      - bdd:/var/lib/mysql
+
   frontend:
     build: ./frontend/
     ports:
@@ -13,4 +22,6 @@ services:
     environment:
     - NODE_OPTIONS=--openssl-legacy-provider
     restart: always
-    
+  
+volumes:
+  bdd:
