@@ -1,6 +1,6 @@
 -- Création de la base de données FlexStream
-CREATE DATABASE IF NOT EXISTS FlexStream;
-USE FlexStream;
+CREATE DATABASE IF NOT EXISTS testdb;
+USE testdb;
 
 -- Table Utilisateurs
 CREATE TABLE Utilisateurs (
