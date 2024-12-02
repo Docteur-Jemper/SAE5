@@ -20,6 +20,7 @@ CREATE TABLE Videos (
     titre VARCHAR(255) NOT NULL,
     description TEXT,
     chemin_fichier VARCHAR(255) NOT NULL,
+    chemin_poster VARCHAR(255) NOT NULL,
     date_ajout DATETIME DEFAULT CURRENT_TIMESTAMP,
     categorie VARCHAR(100),
     nombre_vue INT DEFAULT 0,
