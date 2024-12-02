@@ -44,7 +44,7 @@ CREATE TABLE Commentaires (
 -- Table Logs
 CREATE TABLE Logs (
     id_log INT AUTO_INCREMENT PRIMARY KEY,
-    id_utilisateur INT NOT NULL,
+    id_utilisateur INT,
     action VARCHAR(100) NOT NULL,
     date_action DATETIME DEFAULT CURRENT_TIMESTAMP,
     ip_adresse VARCHAR(45),
