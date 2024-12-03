@@ -1,16 +1,37 @@
-services:
 
+
+services:
   backend:
-    build: ./backend/
+    build: ./backend
     ports:
-      - 8080:8080
+      - "8080:8080"
     restart: always
+    environment:
+      DB_HOST: bdd
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: 123456
+      DB_NAME: testdb
+    depends_on:
+      - bdd
+
+
+  bdd:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: '123456'
+      MYSQL_DATABASE: testdb
+    volumes:
+      - bdd:/var/lib/mysql
 
   frontend:
-    build: ./frontend/
+    build: ./frontend
     ports:
-      - 3000:3000
+      - "3000:3000"
     environment:
-    - NODE_OPTIONS=--openssl-legacy-provider
+      - NODE_OPTIONS=--openssl-legacy-provider
     restart: always
-    
+
+volumes:
+  bdd:
