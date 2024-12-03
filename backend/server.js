@@ -1,30 +1,37 @@
 const express = require("express");
-// const bodyParser = require("body-parser"); /* deprecated */
 const cors = require("cors");
 
 const app = express();
 
-var corsOptions = {
-  origin: "http://localhost:8081"
+// Configuration CORS
+const corsOptions = {
+  origin: ["http://localhost:3000", "http://localhost:8081"], // Origines autorisées
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
 };
-
 app.use(cors(corsOptions));
 
-// parse requests of content-type - application/json
-app.use(express.json()); /* bodyParser.json() is deprecated */
+// Middleware pour parser les requêtes JSON
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true })); /* bodyParser.urlencoded() is deprecated */
+// Import de la connexion à la base de données
+const db = require('./app/models/db');
 
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+// Endpoint pour récupérer les vidéos
+app.get('/api/videos', (req, res) => {
+  db.query('SELECT * FROM Videos', (err, results) => {
+    if (err) {
+      console.error('Erreur lors de la récupération des vidéos:', err);
+      return res.status(500).send('Erreur serveur');
+    }
+    res.json(results);
+  });
 });
 
-require("./app/routes/tutorial.routes.js")(app);
 
-// set port, listen for requests
-const PORT = process.env.PORT || 8080;
+// Démarrage du serveur
+const PORT = 8080;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+  console.log(`Serveur démarré sur le port ${PORT}`);
 });
