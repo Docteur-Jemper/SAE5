@@ -1,0 +1,50 @@
+.films-container {
+    background-color: #001C57; /* Bleu foncé */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    min-height: 100vh; /* S'assurer que la page occupe tout l'écran */
+}
+
+.films-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #f1c40f; /* Couleur dorée */
+}
+
+.films-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.film-card {
+    background-color: #002e7a; /* Bleu un peu plus clair */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    text-align: center;
+    width: 200px;
+}
+
+.film-poster {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #f1c40f; /* Lien avec la charte graphique */
+}
+
+.film-title {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.film-category {
+    font-size: 0.9rem;
+    color: #bdc3c7; /* Gris clair */
+}
+
+.film-views {
+    font-size: 0.9rem;
+    color: #95a5a6; /* Gris encore plus clair */
+}

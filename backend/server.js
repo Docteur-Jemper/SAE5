@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 const corsOptions = {
-  origin: ["http://localhost:3000", "http://localhost:8081"], // Origines autorisées
+  origin: ["http://localhost:3000", "http://localhost:8080"], // Origines autorisées
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // Permettre l'envoi de cookies ou sessions si nécessaire
 };
@@ -30,3 +30,8 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+const videoRoutes = require('./app/routes/videoRoute');
+
+// Ajouter la route des vidéos
+app.use('/api', videoRoutes);
