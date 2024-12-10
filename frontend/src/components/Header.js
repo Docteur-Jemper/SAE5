@@ -45,7 +45,8 @@ const Header = () => {
                 <a href="/">🏠 Accueil</a>
                 <a href="/films">🎥 Films</a>
                 <a href="/series">📺 Séries</a>
-                <a href="/favoris">🎞️ Vidéos ❤️</a>
+                <a href="/videos">🎞️ Vidéos</a>
+                <a href="/favoris">❤️</a>
             </nav>
 
             <div className="header-section search-profile">

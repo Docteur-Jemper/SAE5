@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import './AffichageVideos.css'; // Créez ce fichier CSS pour le style
+import './AffichageVideos.css'; // Réutilisez le même fichier CSS pour un style cohérent
 
-const Films = () => {
-    const [films, setFilms] = useState([]); // Stocker les vidéos récupérées
+const Series = () => {
+    const [series, setSeries] = useState([]); // Stocker les séries récupérées
     const [loading, setLoading] = useState(true); // Indiquer si les données chargent
     const [error, setError] = useState(null); // Gérer les erreurs
 
-    // Fonction pour récupérer les vidéos depuis l'API
     useEffect(() => {
         fetch('http://localhost:8080/api/videos') // Votre backend doit écouter sur ce port
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error('Erreur lors de la récupération des vidéos');
+                    throw new Error('Erreur lors de la récupération des séries');
                 }
                 return response.json();
             })
             .then((data) => {
-                setFilms(data.filter((film) => film.type === 'film')); // Filtrer les films
+                setSeries(data.filter((video) => video.type === 'serie')); // Filtrer les séries
                 setLoading(false);
             })
             .catch((err) => {
@@ -25,25 +24,23 @@ const Films = () => {
             });
     }, []);
 
-    // Affichage en cas de chargement ou d'erreur
     if (loading) return <div>Chargement...</div>;
     if (error) return <div>Erreur : {error}</div>;
 
-    // Affichage principal
     return (
         <div className="films-container">
-            <h1 className="films-title">Nos Films</h1>
+            <h1 className="films-title">Nos Séries</h1>
             <div className="films-grid">
-                {films.map((film) => (
-                    <div key={film.id_video} className="film-card">
+                {series.map((serie) => (
+                    <div key={serie.id_video} className="film-card">
                         <img
-                            src={film.chemin_poster}
-                            alt={film.titre}
+                            src={serie.chemin_poster}
+                            alt={serie.titre}
                             className="film-poster"
                         />
-                        <h3 className="film-title">{film.titre}</h3>
-                        <p className="film-category">{film.categorie}</p>
-                        <p className="film-views">{film.nombre_vue} vues</p>
+                        <h3 className="film-title">{serie.titre}</h3>
+                        <p className="film-category">{serie.categorie}</p>
+                        <p className="film-views">{serie.nombre_vue} vues</p>
                     </div>
                 ))}
             </div>
@@ -51,4 +48,4 @@ const Films = () => {
     );
 };
 
-export default Films;
+export default Series;

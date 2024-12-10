@@ -2,7 +2,7 @@ const connection = require('../models/db'); // Importez votre connexion à la ba
 
 // Fonction pour récupérer les vidéos
 const getVideos = (req, res) => {
-    const query = 'SELECT id_video, titre, description, chemin_poster, categorie, nombre_vue FROM Videos';
+    const query = 'SELECT id_video, titre, description, chemin_poster, categorie, type, nombre_vue FROM Videos';
     connection.query(query, (err, results) => {
         if (err) {
             console.error('Erreur lors de la récupération des vidéos:', err);
